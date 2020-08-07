@@ -4,6 +4,7 @@ namespace psrw;
 use psrw\Exceptions\NoMethodException;
 use psrw\Exceptions\NotBaseController;
 use psrw\Exceptions\No404Route;
+use psrw\Exceptions\NoDefaultRoute;
 
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7Server\ServerRequestCreator;
@@ -64,6 +65,17 @@ class Router {
         foreach ($this->queryParams as $key => $value) {
             $this->route = $key;
             break;
+        }
+        
+        if(trim($this->route) == '') {
+            if(!empty($this->routes['default'])) {
+                $this->runControllerString('default', $this->routes['default']);
+            } else {
+                throw new NoDefaultRoute();
+            }
+            
+            $this->runControllerString('default', $this->routes['404']);
+            return true;
         }
         
         foreach ($this->routes as $preg => $controller) {
