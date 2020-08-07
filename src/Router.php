@@ -73,8 +73,6 @@ class Router {
             } else {
                 throw new NoDefaultRoute();
             }
-            
-            $this->runControllerString('default', $this->routes['404']);
             return true;
         }
         
