@@ -3,6 +3,7 @@ namespace psrw;
 
 use psrw\Exceptions\NoMethodException;
 use psrw\Exceptions\NotBaseController;
+use psrw\Exceptions\No404Route;
 
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7Server\ServerRequestCreator;
@@ -81,6 +82,12 @@ class Router {
                     return true;
                 }
             }
+        }
+        
+        if(!empty($this->routes['404'])) {
+            $this->runControllerString('404', $this->routes['404']);
+        } else {
+            throw new No404Route();
         }
         
         return false;
