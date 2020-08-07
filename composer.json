@@ -2,7 +2,7 @@
     "name": "alex014/psrw",
     "description": "Psr compatible mini-framework",
     "type": "library",
-    "license": "AGPLv3",
+    "license": "MIT",
     "authors": [
         {
             "name": "Alex014",
