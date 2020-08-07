@@ -3,6 +3,7 @@
     "description": "Psr compatible mini-framework",
     "type": "library",
     "license": "MIT",
+    "version": "0.2",
     "authors": [
         {
             "name": "Alex014",
